@@ -22,7 +22,8 @@ environ.Env.read_env(BASE_DIR / ".env")
 # --- Core -------------------------------------------------------------------
 SECRET_KEY = env("SECRET_KEY", default="dev-insecure-key-change-me")
 DEBUG = env("DEBUG")
-ALLOWED_HOSTS = env("ALLOWED_HOSTS")
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["localhost", "127.0.0.1"])
+ALLOWED_HOSTS += [".onrender.com"]  # always allow Render domains
 
 # --- Applications -----------------------------------------------------------
 DJANGO_APPS = [
