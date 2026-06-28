@@ -13,6 +13,7 @@ class EcMemberSerializer(serializers.ModelSerializer):
             "university",
             "year",
             "is_current",
+            "is_convening",
             "photo_url",
         ]
         read_only_fields = ["id"]

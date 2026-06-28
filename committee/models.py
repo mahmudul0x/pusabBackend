@@ -9,6 +9,7 @@ class EcMember(models.Model):
     university = models.CharField(max_length=200, blank=True)
     year = models.PositiveIntegerField()  # session
     is_current = models.BooleanField(default=False)
+    is_convening = models.BooleanField(default=False)  # founding convening committee (2014)
     photo_url = models.URLField(max_length=600, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
