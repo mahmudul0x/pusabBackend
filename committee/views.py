@@ -2,8 +2,8 @@ from rest_framework import viewsets
 
 from config.permissions import IsAdminOrReadOnly
 
-from .models import EcMember
-from .serializers import EcMemberSerializer
+from .models import EcMember, LeaderMessage
+from .serializers import EcMemberSerializer, LeaderMessageSerializer
 
 
 class EcMemberViewSet(viewsets.ModelViewSet):
@@ -21,3 +21,12 @@ class EcMemberViewSet(viewsets.ModelViewSet):
         if self.request.query_params.get("convening") == "true":
             qs = qs.filter(is_convening=True)
         return qs
+
+
+class LeaderMessageViewSet(viewsets.ModelViewSet):
+    """President / General Secretary messages — looked up by role."""
+
+    queryset = LeaderMessage.objects.all()
+    serializer_class = LeaderMessageSerializer
+    permission_classes = [IsAdminOrReadOnly]
+    lookup_field = "role"
