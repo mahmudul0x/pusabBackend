@@ -15,7 +15,7 @@ class EcMemberViewSet(viewsets.ModelViewSet):
         qs = super().get_queryset()
         year = self.request.query_params.get("year")
         if year:
-            qs = qs.filter(year=year)
+            qs = qs.filter(year=year, is_convening=False)
         if self.request.query_params.get("current") == "true":
             qs = qs.filter(is_current=True)
         if self.request.query_params.get("convening") == "true":
